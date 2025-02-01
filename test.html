@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Transparency Test</title>
+  <style>
+    body {
+      background: pink; /* Helps show transparency if it works */
+      text-align: center;
+      margin-top: 50px;
+      font-family: sans-serif;
+    }
+    img, video {
+      display: block;
+      margin: 20px auto;
+      background: transparent;
+    }
+    video {
+      max-width: 500px;
+      height: auto;
+    }
+    .section-title {
+      font-size: 1.5rem;
+      margin: 30px 0 10px;
+    }
+  </style>
+</head>
+<body>
+
+<script>
+  // Called if an image fails to load
+  function imageError() {
+    alert("Image not found or cannot be loaded. Please check the file path!");
+  }
+
+  // Called if the video fails to load
+  function videoError() {
+    alert("WebM video not found or cannot be loaded. " +
+          "Please check the file path or browser support for VP9 alpha!");
+  }
+</script>
+
+<!-- GIF Transparency Test -->
+<div class="section-title">GIF Transparency Test</div>
+<img src="your_gif.gif" alt="GIF Transparency" onerror="imageError()" />
+
+<!-- WebM (VP9) Transparency Test -->
+<div class="section-title">WebM (VP9) Transparency Test</div>
+<video autoplay loop muted playsinline id="videoTest">
+  <source src="your_video.webm" type="video/webm">
+  Your browser does not support HTML5 video.
+</video>
+
+<script>
+  // Listen for a load error event on the video
+  const videoElement = document.getElementById('videoTest');
+  videoElement.addEventListener('error', videoError);
+</script>
+
+<!-- PNG Transparency Test -->
+<div class="section-title">PNG Transparency Test</div>
+<img src="1.png" alt="PNG 1" onerror="imageError()" />
+<img src="2.png" alt="PNG 2" onerror="imageError()" />
+<img src="3.png" alt="PNG 3" onerror="imageError()" />
+<img src="4.png" alt="PNG 4" onerror="imageError()" />
+<img src="5.png" alt="PNG 5" onerror="imageError()" />
+
+</body>
+</html>
